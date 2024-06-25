@@ -5,7 +5,6 @@ import '../scss/styles.scss';
 
 const buttonElement = document.getElementById('button')
 
-
 const buttonClick = () => {
     console.log(buttonElement.textContent)
 }
@@ -17,15 +16,12 @@ buttonElement.addEventListener('click', buttonClick)
 
 const titleElement = document.getElementById('title')
 
-
 const titleMouseOver = () => {
     titleElement.textContent = 'Quita de encima!!!'
 }
-
 const titleMouseOut = () => {
     titleElement.textContent = 'Soy un título'
 }
-
 
 titleElement.addEventListener('mouseover', titleMouseOver)
 titleElement.addEventListener('mouseout', titleMouseOut)
@@ -35,7 +31,7 @@ titleElement.addEventListener('mouseout', titleMouseOut)
 
 
 const bigWindow = (event) => {
-    console.log(`el ancho de la pantalla es ${window.innerHeight} y el alto es ${window.innerWidth}`)
+    console.log(`el ancho de la pantalla es ${window.innerWidth} y el alto es ${window.innerHeight}`)
 }
 
 window.addEventListener('resize', bigWindow)
@@ -54,32 +50,89 @@ window.addEventListener('keydown', textLetter)
 //Crea un array con 5 palabras. Añade un h2 a tu HTML y ponle un id. Añade dos botones con el texto previus y next respectívamente. Haz que los botones cambien el texto del h2 con las palabras del array, cuando llegues a la última volverás a la primera si pulsas next y cuando estés en la primera podrás volver a la última dandole a previous.
 
 
+// const subTitle = document.getElementById('subtitle')
+// const buttonNextElement = document.getElementById('button-next')
+// const buttonPreviusElement = document.getElementById('button-previus')
+// const fiveWords = ['hola', 'adios', 'coche', 'camion', 'perro']
+// let counter = 0
+
+
+// const buttonNext = () => {
+//     if (counter >= fiveWords.length - 1) {
+//         counter = 0
+//     } else {
+//         counter++
+//     }
+//     subTitle.textContent = fiveWords[counter]
+// }
+// const buttonPrevius = () => {
+
+
+//     if (counter <= 0) {
+//         counter = fiveWords.length - 1
+//     } else {
+//         counter--
+//     }
+//     subTitle.textContent = fiveWords[counter]
+   
+// }
+// buttonNextElement.addEventListener('click', buttonNext)
+// buttonPreviusElement.addEventListener('click', buttonPrevius)
+
+// subTitle.textContent = fiveWords[0]
+
+
+//Repite el mismo ejercicio pero esta vez desactiva el botón previous si estás en el primer elemento y el botón next si estás en el último
+
+
 const subTitle = document.getElementById('subtitle')
 const buttonNextElement = document.getElementById('button-next')
 const buttonPreviusElement = document.getElementById('button-previus')
 const fiveWords = ['hola', 'adios', 'coche', 'camion', 'perro']
 let counter = 0
 
+buttonPreviusElement.disabled = true
 
-const buttonNext = () => {
+
+const buttonPrevius = () => {
+counter--;
     if (counter <= 0) {
-        counter = fiveWords.length - 1
-    } else {
-        counter--
+        buttonPreviusElement.disabled = true
     }
+    buttonNextElement.disabled = false
     subTitle.textContent = fiveWords[counter]
 }
-const buttonPrevius = () => {
+
+const buttonNext = () => {
+    counter++
     if (counter >= fiveWords.length - 1) {
-        counter = 0
-    } else {
-        counter++
-    }
+        buttonNextElement.disabled = true
+    } 
+    buttonPreviusElement.disabled = false
     subTitle.textContent = fiveWords[counter]
 }
 
 buttonNextElement.addEventListener('click', buttonNext)
 buttonPreviusElement.addEventListener('click', buttonPrevius)
 
-//Repite el mismo ejercicio pero esta vez desactiva el botón previous si estás en el primer elemento y el botón next si estás en el último
+subTitle.textContent = fiveWords[0]
 
+
+//Crea un input range con un label, al mover el input range deberá escribir en el label el valor del input range.
+
+
+const inputElement = document.getElementById('range')
+const labelElement = document.getElementById('label')
+
+const changeInput = ()=>{
+ labelElement.textContent= inputElement.value;
+
+}
+inputElement.addEventListener('input', changeInput)
+
+
+//Crea una lista de 4 checkbox con el texto que quieras y un botón, al pulsar el botón deberá decirte cuantos checkbox están marcados y cual es su texto.
+
+
+const checkboxElements = document.querySelectorAll('input[type="checkbox"]')
+const buttonElementCheckbox = document.getElementById('buttoncheck')
