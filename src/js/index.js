@@ -74,7 +74,7 @@ window.addEventListener('keydown', textLetter)
 //         counter--
 //     }
 //     subTitle.textContent = fiveWords[counter]
-   
+
 // }
 // buttonNextElement.addEventListener('click', buttonNext)
 // buttonPreviusElement.addEventListener('click', buttonPrevius)
@@ -95,7 +95,7 @@ buttonPreviusElement.disabled = true
 
 
 const buttonPrevius = () => {
-counter--;
+    counter--;
     if (counter <= 0) {
         buttonPreviusElement.disabled = true
     }
@@ -107,7 +107,7 @@ const buttonNext = () => {
     counter++
     if (counter >= fiveWords.length - 1) {
         buttonNextElement.disabled = true
-    } 
+    }
     buttonPreviusElement.disabled = false
     subTitle.textContent = fiveWords[counter]
 }
@@ -124,8 +124,8 @@ subTitle.textContent = fiveWords[0]
 const inputElement = document.getElementById('range')
 const labelElement = document.getElementById('label')
 
-const changeInput = ()=>{
- labelElement.textContent= inputElement.value;
+const changeInput = () => {
+    labelElement.textContent = inputElement.value;
 
 }
 inputElement.addEventListener('input', changeInput)
@@ -134,5 +134,31 @@ inputElement.addEventListener('input', changeInput)
 //Crea una lista de 4 checkbox con el texto que quieras y un botón, al pulsar el botón deberá decirte cuantos checkbox están marcados y cual es su texto.
 
 
-const checkboxElements = document.querySelectorAll('input[type="checkbox"]')
-const buttonElementCheckbox = document.getElementById('buttoncheck')
+
+
+const checkCheckboxes = () => {
+    // Selecciona todos los checkboxes que están marcados
+    const checkboxes = document.querySelectorAll('input[name="option"]:checked');
+
+    // Cuenta cuántos checkboxes están marcados
+    const count = checkboxes.length;
+
+    // Inicializa una cadena vacía para los valores seleccionados
+    let selectedValues = '';
+
+    // Recorre los checkboxes marcados y construye la cadena de valores
+    checkboxes.forEach((checkbox, index) => {
+        selectedValues += checkbox.value;
+        // Agrega una coma y espacio después de cada valor, excepto el último
+        if (index < count - 1) {
+            selectedValues += ', ';
+        }
+    });
+
+    // Muestra el resultado
+    const resultText = `Se han marcado ${count} checkbox: ${selectedValues}.`;
+    document.getElementById('resultado').textContent = resultText;
+};
+
+// Agrega el evento al botón
+document.getElementById('buttoncheck').addEventListener('click', checkCheckboxes);
